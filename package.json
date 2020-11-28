@@ -1,0 +1,18 @@
+{
+  "_comment": "Package pra produção já compilada em JS",
+  "name": "staysafe-api",
+  "version": "1.0.0",
+  "description": "API for use with StaySafe Project",
+  "author": "Lucas Souza <lucasouliveira@gmail.com>",
+  "license": "MIT",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "typeorm": "^0.2.29"
+  }
+}
