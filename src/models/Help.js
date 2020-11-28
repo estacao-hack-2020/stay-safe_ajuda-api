@@ -22,23 +22,26 @@ __decorate([
     __metadata("design:type", String)
 ], Help.prototype, "nome", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: false }),
+    typeorm_1.Column({ type: 'decimal', nullable: false }),
     __metadata("design:type", Number)
 ], Help.prototype, "latitude", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: false }),
+    typeorm_1.Column({ type: 'decimal', nullable: false }),
     __metadata("design:type", Number)
 ], Help.prototype, "longitude", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: false }),
+    typeorm_1.Column({ type: 'text', nullable: false }),
     __metadata("design:type", String)
 ], Help.prototype, "mensagem", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: false }),
+    typeorm_1.Column({ default: 'now()', nullable: false }),
     __metadata("design:type", Date)
 ], Help.prototype, "dataCriacao", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: false }),
+    typeorm_1.Column({
+        enum: ['aguardando', 'finalizado'],
+        nullable: false
+    }),
     __metadata("design:type", String)
 ], Help.prototype, "status", void 0);
 Help = __decorate([
