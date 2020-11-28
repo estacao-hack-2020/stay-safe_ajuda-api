@@ -42,6 +42,6 @@ __decorate([
     __metadata("design:type", String)
 ], Help.prototype, "status", void 0);
 Help = __decorate([
-    typeorm_1.Entity('reminder')
+    typeorm_1.Entity('ajuda')
 ], Help);
 exports.default = Help;
