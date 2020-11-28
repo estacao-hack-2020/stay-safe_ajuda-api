@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { Status } from './Status';
 
-@Entity('reminder')
+@Entity('ajuda')
 export default class Help {
 
   @PrimaryGeneratedColumn('increment')
@@ -10,19 +10,22 @@ export default class Help {
   @Column({ nullable: false })
   nome: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'decimal', nullable: false})
   latitude: number;
 
-  @Column({ nullable: false })
+  @Column({ type: 'decimal', nullable: false })
   longitude: number;
 
-  @Column({ nullable: false })
+  @Column({ type: 'text', nullable: false })
   mensagem: string;
 
-  @Column({ nullable: false })
+  @Column({ default: 'now()' })
   dataCriacao: Date;
 
-  @Column({ nullable: false })
+  @Column({
+    enum: ['aguardando','finalizado'],
+    nullable: false
+  })
   status: Status;
-  
+
 }
