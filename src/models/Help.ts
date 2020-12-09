@@ -10,6 +10,15 @@ export default class Help {
   @Column({ nullable: false })
   nome: string;
 
+  @Column({ nullable: false })
+  telefone: string;
+
+  @Column()
+  email: string;
+
+  @Column({ nullable: false })
+  idade: number;
+
   @Column({ type: 'decimal', nullable: false})
   latitude: number;
 

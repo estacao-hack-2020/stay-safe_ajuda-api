@@ -30,13 +30,16 @@ export default {
       latitude,
       longitude,
       mensagem,
+      telefone,
+      email,
+      idade,
     } = request.body;
 
     const dataCriacao = new Date();
     const status = Status.aguardando;
 
     const help = helpRepository.create({
-      nome, latitude, longitude, mensagem, dataCriacao, status
+      nome, latitude, longitude, mensagem, dataCriacao, status, telefone, email, idade
     });
 
     await helpRepository.save(help);
@@ -63,13 +66,16 @@ export default {
       longitude,
       mensagem,
       status,
+      telefone,
+      email,
+      idade,
     } = request.body;
 
     const id = Number(request.params.id);
     const dataCriacao = new Date();
 
     const updatedHelp: Help = {
-      id, nome, latitude, longitude, mensagem, dataCriacao, status
+      id, nome, latitude, longitude, mensagem, dataCriacao, status, telefone, email, idade
     };
 
     await helpRepository.save(updatedHelp);
@@ -79,13 +85,13 @@ export default {
 
   async changeStatus(request: Request, response: Response) {
     const helpRepository = getRepository(Help);
-    
+
     const id = Number(request.params.id);
     const status: Status = request.body.status;
 
     const updatedHelp = { id, status }
     await helpRepository.save(updatedHelp);
-    
+
     return response.json(updatedHelp);
   }
 
