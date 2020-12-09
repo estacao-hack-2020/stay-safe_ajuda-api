@@ -4,6 +4,15 @@ import { getRepository } from 'typeorm';
 import Help from '../models/Help';
 import { Status } from '../models/Status';
 
+function isStatusInvalid(status: string){
+  return status !== Status.aguardando && status !== Status.finalizado;
+}
+
+const ERROR_MSGS = {
+  INVALID_STATUS_MSG: { error: 'invalid status format, it must be either "aguardando" or "finalizado"' },
+  HELP_NOT_FOUND: { error: 'Help entity not found' },
+}
+
 export default {
 
   async index(request: Request, response: Response) {
@@ -54,7 +63,7 @@ export default {
     const help: Help = await helpRepository.findOneOrFail(id);
 
     if(!help){
-      return response.status(404).json({ message: 'Help entity not found' })
+      return response.status(404).json(ERROR_MSGS.HELP_NOT_FOUND)
     }
 
     await helpRepository.delete(id);
@@ -75,8 +84,8 @@ export default {
       idade,
     } = request.body;
 
-    if( status !== Status.aguardando || status !== Status.finalizado ) {
-      return response.status(400).json({ error: 'invalid status format'});
+    if( isStatusInvalid(status) ) {
+      return response.status(400).json(ERROR_MSGS.INVALID_STATUS_MSG);
     }
 
     const id = Number(request.params.id);
@@ -96,11 +105,9 @@ export default {
 
     const id = Number(request.params.id);
 
-    let status: Status;
-    try {
-      status = request.body.status;
-    } catch {
-      return response.status(400).json({ error: 'invalid status format'});
+    const status = request.body.status;
+    if( isStatusInvalid(status) ) {
+      return response.status(400).json(ERROR_MSGS.INVALID_STATUS_MSG);
     }
 
     const updatedHelp = { id, status }
@@ -108,5 +115,4 @@ export default {
 
     return response.json(updatedHelp);
   }
-
 };
