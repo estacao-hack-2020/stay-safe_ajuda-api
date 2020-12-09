@@ -53,7 +53,11 @@ export default {
 
     const help: Help = await helpRepository.findOneOrFail(id);
 
-    await helpRepository.delete(help);
+    if(!help){
+      return response.status(404).json({ message: 'Help entity not found' })
+    }
+
+    await helpRepository.delete(id);
 
     return response.json({ message: 'Help deleted successfully' });
   },
