@@ -71,6 +71,10 @@ export default {
       idade,
     } = request.body;
 
+    if( status !== Status.aguardando || status !== Status.finalizado ) {
+      return response.status(400).json({ error: 'invalid status format'});
+    }
+
     const id = Number(request.params.id);
     const dataCriacao = new Date();
 
@@ -87,7 +91,13 @@ export default {
     const helpRepository = getRepository(Help);
 
     const id = Number(request.params.id);
-    const status: Status = request.body.status;
+
+    let status: Status;
+    try {
+      status = request.body.status;
+    } catch {
+      return response.status(400).json({ error: 'invalid status format'});
+    }
 
     const updatedHelp = { id, status }
     await helpRepository.save(updatedHelp);

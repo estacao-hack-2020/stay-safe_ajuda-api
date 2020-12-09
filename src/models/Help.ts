@@ -35,6 +35,6 @@ export default class Help {
     enum: ['aguardando','finalizado'],
     nullable: false
   })
-  status: Status;
+  status: string;
 
 }
