@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const Status_1 = require("./Status");
 let Help = class Help {
 };
 __decorate([
@@ -21,6 +20,18 @@ __decorate([
     typeorm_1.Column({ nullable: false }),
     __metadata("design:type", String)
 ], Help.prototype, "nome", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: false }),
+    __metadata("design:type", String)
+], Help.prototype, "telefone", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Help.prototype, "email", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: false }),
+    __metadata("design:type", Number)
+], Help.prototype, "idade", void 0);
 __decorate([
     typeorm_1.Column({ type: 'decimal', nullable: false }),
     __metadata("design:type", Number)
@@ -34,7 +45,7 @@ __decorate([
     __metadata("design:type", String)
 ], Help.prototype, "mensagem", void 0);
 __decorate([
-    typeorm_1.Column({ default: 'now()', nullable: false }),
+    typeorm_1.Column({ default: 'now()' }),
     __metadata("design:type", Date)
 ], Help.prototype, "dataCriacao", void 0);
 __decorate([
